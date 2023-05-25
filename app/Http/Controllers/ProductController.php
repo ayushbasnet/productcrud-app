@@ -17,30 +17,33 @@ class ProductController extends Controller
     {
         $product = Product::all();
 
-        return view ('index')->with('product', $product);
+        return view ('product.index')->with('product', $product);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create():View
     {
-        return view('create');
+        return view('product.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request):RedirectResponse
     {
         $incomingFields = $request->validate([
-            'name' => 'required',
-            'company' => 'required',
+            'product_name' => 'required',
             'price' => 'required',
+            'quantity' => 'required',
+            'description'=> 'bail|required|max:30',
+            'created_at' => 'required',
+            'updated_at' => 'required',
         ]);
         Product::create($incomingFields);
 
-        return redirect('/');
+        return redirect('product');
     }
 
     /**
@@ -49,31 +52,43 @@ class ProductController extends Controller
     public function show(string $id):View
     {
         $product = Product::find($id);
-        return view('show')->with('product', $product);
+        return view('product.show')->with('product', $product);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product):View
+    public function edit(string $id):View
     {
-        // $product = Product::find($id);
-        return view('edit')->with('product', $product);
+        $product = Product::find($id);
+        return view('product.edit')->with('product', $product);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update( Product $product, Request $request)
     {
+        $incomingFields = $request->validate([
+            'product_name' => 'required',
+            'price' => 'required',
+            'quantity' => 'required',
+            'description'=> 'bail|required|max:30',
+            'created_at' => 'required',
+            'updated_at' => 'required',
+        ]);
         
+        $product->update($incomingFields);
+
+        return redirect('product');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy() 
+    public function destroy(Product $product)
     {
-        
+        $product->delete(); 
+        return redirect('product');
     }
 }
