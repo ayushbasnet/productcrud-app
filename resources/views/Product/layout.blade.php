@@ -7,15 +7,10 @@
 <body>
 
 <nav class="py-2">
-    <a href="{{ url('/index') }}" class="btn btn-success btn-sm" title="Home">
+    <a href="{{ url('/product') }}" class="btn btn-success btn-sm" title="Home">
         <i class="fa fa-plus" aria-hidden="true"></i> Home
     </a>
-    <a href="{{ url('/create') }}" class="btn btn-success btn-sm" title="Home">
-        <i class="fa fa-plus" aria-hidden="true"></i> Create
-    </a>
-    <a href="{{ url('/edit') }}" class="btn btn-success btn-sm" title="Home">
-        <i class="fa fa-plus" aria-hidden="true"></i> Edit
-    </a>
+
     <a href="{{ url('/welcome') }}" class="btn btn-success btn-sm" title="Home">
         <i class="fa fa-plus" aria-hidden="true"></i> Welcome
     </a>
