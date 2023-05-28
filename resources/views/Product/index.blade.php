@@ -3,7 +3,10 @@
 
 @section('content')
     <a href="{{ url('/product/create') }}" class="btn btn-success btn-sm" title="Add New Product">
-        <i class="fa fa-plus" aria-hidden="true"></i> Add New
+        <i class="fa fa-plus" aria-hidden="true">
+
+        </i>
+         Add New
     </a>
     <br/>
     <br/>
@@ -12,6 +15,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Category</th>
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
@@ -26,15 +30,15 @@
                                         <td>{{ $item->product_name }}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->quantity }}</td>
-                                        <td>{{ $item->description }}</td>
+                                        <td maxlength="10">{{ $item->description }}</td>
                                         <td>{{ date('Y-m-d', strtotime($item->created_at)); }}</td>
                                         <td>
                                         <a href="{{ url('/product/' . $item->id) }}" title="Show Product"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i> Show</button></a>
-                                            <a href="{{ url('/product/' . $item->id.'/edit' ) }}" title="Edit Product"><button class="btn btn-primary btn-sm"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Edit</button></a>
+                                            <a href="{{ url('/product/' . $item->id.'/edit' ) }}" title="Edit Product"><button class="btn btn-primary btn-sm"><i class="fa fa-house" aria-hidden="true"></i> Edit</button></a>
                                             <form method="POST" action="{{ url('/product' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                 {{ method_field('DELETE') }}
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Product" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa fa-trash-o" aria-hidden="true"></i> Delete</button>
+                                                <button type="submit" class="btn btn-danger btn-sm" title="Delete Product" onclick="return confirm(&quot;Confirm delete?&quot;)"><i class="fa-sharp fa-regular fa-trash"></i> Delete</button>
                                             </form>
                                         </td>
                                     </tr>
