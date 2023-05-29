@@ -21,6 +21,13 @@
         <input type="date" name="created_at" id="created_at" class="form-control" value="{{$product->created_at}}"></br>
         <label>Updated At:</label></br>
         <input type="date" name="updated_at" id="updated_at" class="form-control" value="{{$product->updated_at}}"></br>
+        <label>Category</label></br>
+        <select name="category_id" >
+            <option value="">Select a Category</option>
+            @foreach ($category as $id => $name)
+                <option value="{{ $id }}">{{ $name }}</option>
+            @endforeach
+        </select>
 
         <button type="submit"class="btn btn-success">Update</button></br>
     </form>

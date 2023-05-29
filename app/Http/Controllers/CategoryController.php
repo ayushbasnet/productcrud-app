@@ -14,14 +14,14 @@ class CategoryController extends Controller
     public function index()
     {
         $category = Category::Paginate(15);
-        $product = Product::pluck('product_name', 'id');
-        return view ('category.index', compact('category','product'));
+
+        return view ('category.index',compact('category'));
     }
 
     public function create():View
     {   
-        $products = Product::pluck('product_name', 'id');
-        return view('category.create',compact('products'));
+        
+        return view('category.create');
     }
 
     public function store(Request $request):RedirectResponse
@@ -29,7 +29,6 @@ class CategoryController extends Controller
         $incomingFields = $request->validate([
             'description'=> 'bail|required|max:30',
             'category_name' => 'required',
-            'product_id' => 'required',
         ]);
 
         category::create($incomingFields);
@@ -46,17 +45,16 @@ class CategoryController extends Controller
     public function edit(string $id):View
     {
         $category = category::find($id);
-        $product = Product::pluck('product_name', 'id');
-        return view('category.edit',compact('category','product'));
+
+        return view('category.edit',compact('category'));
     }
 
     public function update( category $category, Request $request)
     {
-        $request->except([ 'updated_at', 'created_at',]);
+        
         $incomingFields = $request->validate([
             'description'=> 'bail|required|max:30',
             'category_name' => 'required',
-            'product_id' => 'required',
         ]);
         
         $category->update($incomingFields);

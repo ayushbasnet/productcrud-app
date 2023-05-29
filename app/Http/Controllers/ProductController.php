@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -16,8 +17,8 @@ class ProductController extends Controller
     public function index()
     {
         $product = Product::Paginate(15);
-
-        return view ('product.index', ['product' => $product]);
+        $category = Category::pluck('category_name', 'id');
+        return view ('product.index', compact('category','product'));
     }
 
     /**
@@ -25,7 +26,8 @@ class ProductController extends Controller
      */
     public function create():View
     {
-        return view('product.create');
+        $category = Category::pluck('category_name', 'id');
+        return view('product.create',compact('category'));
     }
 
     /**
@@ -40,6 +42,7 @@ class ProductController extends Controller
             'description'=> 'bail|required|max:30',
             'created_at' => 'required',
             'updated_at' => 'required',
+            'category_id' => 'required',
         ]);
         Product::create($incomingFields);
 
@@ -61,7 +64,8 @@ class ProductController extends Controller
     public function edit(string $id):View
     {
         $product = Product::find($id);
-        return view('product.edit')->with('product', $product);
+        $category = Category::pluck('category_name', 'id');
+        return view('product.edit',compact('category','product'));
     }
 
     /**
@@ -76,6 +80,7 @@ class ProductController extends Controller
             'description'=> 'bail|required|max:30',
             'created_at' => 'required',
             'updated_at' => 'required',
+            'category_id' => 'required',
         ]);
         
         $product->update($incomingFields);
