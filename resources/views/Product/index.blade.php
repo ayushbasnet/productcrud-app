@@ -15,7 +15,6 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
-                                        <th>Category</th>
                                         <th>Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
@@ -43,6 +42,11 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                
                                 </tbody>
                             </table>
+                            <br/>
+                            <br/>
+                            {{ $product->links() }}
+                            
 @endsection

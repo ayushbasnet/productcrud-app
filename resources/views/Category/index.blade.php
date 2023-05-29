@@ -37,6 +37,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                {{ $category->links() }}
                                 </tbody>
                             </table>
 @endsection

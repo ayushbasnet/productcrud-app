@@ -46,8 +46,8 @@ class CategoryController extends Controller
     public function edit(string $id):View
     {
         $category = category::find($id);
-
-        return view('category.edit',compact('category'));
+        $product = Product::pluck('product_name', 'id');
+        return view('category.edit',compact('category','product'));
     }
 
     public function update( category $category, Request $request)
