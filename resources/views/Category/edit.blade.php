@@ -14,13 +14,6 @@
         <label>Description</label></br>
         <input type="text" name="description" id="description" class="form-control" value="{{$category->description}}"></br>
 
-        <select name="product_id" >
-            <option value="">Select a product</option>
-            @foreach ($product as $id => $name)
-                <option value="{{ $id }}">{{ $name }}</option>
-            @endforeach
-        </select>
-
         <button type="submit"class="btn btn-success">Update</button></br>
     </form>
    

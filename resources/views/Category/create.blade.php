@@ -13,13 +13,6 @@
         <input type="text" name="category_name" id="category_name" class="form-control"></br>
         <label>Description</label></br>
         <input type="text" name="description" id="description" class="form-control"></br>
-        
-        <select name="product_id">
-            <option value="">Select a product</option>
-            @foreach ($products as $id => $name)
-                <option value="{{ $id }}">{{ $name }}</option>
-            @endforeach
-        </select>
 
         <input type="submit" value="Save" class="btn btn-success"></br>
     </form>

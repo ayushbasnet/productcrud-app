@@ -9,8 +9,6 @@
       
       <form action="{{ url('product') }}" method="post">
         @csrf
-        <label>Category</label></br>
-        <input type="text" name="p_id" id="p_id" class="form-control"></br>
         <label>Name</label></br>
         <input type="text" name="product_name" id="product_name" class="form-control"></br>
         <label>Price</label></br>
@@ -23,6 +21,13 @@
         <input type="date" name="created_at" id="created_at" class="form-control"></br>
         <label>Updated At:</label></br>
         <input type="date" name="updated_at" id="updated_at" class="form-control"></br>
+        <label>Category</label></br>
+        <select name="category_id">
+            <option value="">Select a Category</option>
+            @foreach ($category as $id => $name)
+                <option value="{{ $id }}">{{ $name }}</option>
+            @endforeach
+        </select>
 
         <input type="submit" value="Save" class="btn btn-success"></br>
     </form>

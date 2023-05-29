@@ -16,6 +16,7 @@
                                     <tr>
                                         <th>#</th>
                                         <th>Name</th>
+                                        <th>Category</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
                                         <th>Description</th>
@@ -27,6 +28,7 @@
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->product_name }}</td>
+                                        <td>{{ $category[$item->category_id]}}</td>
                                         <td>{{ $item->price }}</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td maxlength="10">{{ $item->description }}</td>
