@@ -14,6 +14,7 @@
                                 <thead>
                                     <tr>
                                         <th>#</th>
+                                        <th>Product-Name</th>
                                         <th>Name</th>
                                         <th>Description</th>
                                     </tr>
@@ -22,6 +23,7 @@
                                 @foreach($category as $item)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $product[$item->product_id]}}</td>
                                         <td>{{ $item->category_name }}</td>
                                         <td maxlength="10">{{ $item->description }}</td>
                                         <td>
@@ -35,6 +37,7 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                {{ $category->links() }}
                                 </tbody>
                             </table>
 @endsection
